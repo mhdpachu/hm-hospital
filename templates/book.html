@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <link rel="stylesheet" href="book.css">
+    <style>
+        body {
+    background-image: url('{% static "images/doctor.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.header {
+    background-color: rgb(46, 46, 248);
+    height: 120px;
+    border-radius: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 20px;
+}
+.logo img {
+    width: 80px;
+    border-radius: 50%;
+}
+.head, .no, .place {
+    text-align: center;
+    color: aliceblue;
+    margin: 0;
+}
+.head {
+    position: absolute;
+    bottom: 35px;
+}
+.no {
+    position: absolute;
+    bottom: 60px;
+}
+.place {
+    position: absolute;
+    bottom: 10px;
+    font-style: italic;
+}
+h1 {
+    text-align: center;
+    padding-top: 30px;
+    font-size: 36px;
+}
+.dmain img {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    border-radius: 20px;
+    display: block;
+    margin: 30px auto;
+    border: solid blue;
+}
+.dtext {
+    text-align: center;
+    margin-top: 20px;
+}
+.form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form label, .form input, .form select, .form button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 18px;
+}
+.form input, .form select {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.form button {
+    background-color: rgb(8, 57, 216);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.form button:hover {
+    background-color: rgb(8, 57, 180);
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: 100px;
+        border-radius: 50px;
+    }
+    .logo img {
+        width: 60px;
+    }
+    .head {
+        font-size: 24px;
+    }
+    .no, .place {
+        font-size: 14px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    .form {
+        max-width: 100%;
+        padding: 15px;
+    }
+    .dmain img {
+        max-width: 90%;
+        margin: 20px auto;
+        height: 400px;
+    }
+    .form input, .form select, .form button {
+        font-size: 16px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{% url 'home' %}">
+            <div class="logo">
+                <img src="{% static 'images/logo.png' %}" alt="Logo">
+            </div>
+        </a>
+        <h1 class="head">HM HOSPITAL</h1>
+        <h4 class="no">Ph : 9075643904</h4>
+        <h3 class="place">Location : Kannur bus stand</h3>
+    </div>
+
+    <h1>BOOKING PAGE</h1>
+
+    {% for i in products %}
+    <div class="dmain">
+        <img src="{{ i.image.url }}" alt="Doctor Image">
+    </div>
+    <div class="dtext">
+        <h3>DOCTOR : {{ i.name }}</h3>
+        <h4>FEES : {{ i.fees }}</h4>
+    </div>
+
+    <div class="form">
+        <form method="post" action="{% url 'booked' %}">
+            {% csrf_token %}
+            <input type="hidden" name="d_id" value="{{ i.id }}">
+            <label for="name">NAME :</label>
+            <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+
+            <label for="age">AGE :</label>
+            <input type="text" name="age" id="age" placeholder="Enter Your Age" required>
+
+            <label for="gender">GENDER :</label>
+            <select name="gender" id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="number">Phone no:</label>
+            <input type="text" name="number" id="number" placeholder="Enter Your Phone Number" required>
+
+            <button type="submit">BOOK</button>
+        </form>
+    </div>
+
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Success</title>
+    <link rel="stylesheet" href="success.css">   
+    <style>
+        body {
+    background-image: url('{% static "images/treat.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: rgb(46, 46, 248);
+    height: 120px;
+    border-radius: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.head h1 {
+    color: aliceblue;
+    text-align: center;
+    margin: 0;
+    font-size: 36px;
+}
+
+.contact-info {
+    color: aliceblue;
+    text-align: right;
+    font-size: 14px;
+}
+
+.main-content {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.main-content h1 {
+    font-size: 80px;
+    font-style: italic;
+    color: rgb(46, 46, 248);
+    margin: 0;
+}
+
+.main-content h1 span {
+    color: #f50707;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        height: 100px;
+        border-radius: 50px;
+        padding: 0 10px;
+    }
+
+    .logo img {
+        width: 80px;
+    }
+
+    .head h1 {
+        font-size: 28px;
+    }
+
+    .contact-info {
+        font-size: 12px;
+    }
+
+    .main-content h1 {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content h1 {
+        font-size: 40px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="{% url 'home' %}" class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Hospital Logo">
+        </a>
+        <div class="head">
+            <h1>HM HOSPITAL</h1>
+        </div>
+        <div class="contact-info">
+            <p>Ph: 9075643904</p>
+            <p>Location: Kannur bus stand</p>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <h1>BOOKING <span>SUCCESS</span></h1>
+    </main>
+</body>
+</html>

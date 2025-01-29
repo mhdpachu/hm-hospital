@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HM Hospital</title>
+    <link rel="stylesheet" href="doctor.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: rgb(46, 46, 248);
+    height: 120px;
+    border-radius: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    color: aliceblue;
+}
+
+.logo img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.head {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.no, .place {
+    text-align: center;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+.our-doctors {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.doctor-card {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.doctor-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px;
+}
+
+.doctor-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.doctor-info h1 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.book-button {
+    display: inline-block;
+    background-color: rgb(46, 46, 248);
+    color: aliceblue;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.book-button:hover {
+    background-color: rgb(30, 30, 200);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+    }
+
+    .head {
+        font-size: 1.5rem;
+    }
+
+    .doctor-card {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .doctor-image img {
+        max-width: 300px;
+    }
+
+    .doctor-info {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .book-button {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .head {
+        font-size: 1.2rem;
+    }
+
+    .doctor-info h1 {
+        font-size: 1rem;
+    }
+
+    .book-button {
+        width: 100%;
+    }
+}
+
+    </style>
+</head>
+<body style="background-image: url('{% static "images/doctor.jpg" %}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="header">
+        <a href="{% url 'home' %}">
+            <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Hospital Logo"></div>
+        </a>
+        <h1 class="head">HM HOSPITAL</h1>
+        <h4 class="no">Ph : 9075643904</h4>
+        <h3 class="place">Location : Kannur bus stand</h3>
+    </div>
+
+    <h1 class="our-doctors">OUR DOCTORS</h1>     
+
+    {% for i in treat %}
+    <div class="doctor-card">
+        <div class="doctor-image">
+            <img src="{{ i.image.url }}" alt="Doctor Image">
+        </div>
+        <div class="doctor-info">
+            <h1>NAME: {{ i.name }}</h1>
+            <h1>EXPERIENCE: {{ i.experience }}</h1>
+            <h1>DEPARTMENT: {{ i.treatment }}</h1>
+            <h1>TIME: 9:00 AM TO 10:00 PM</h1>
+            <h1>FEES: {{ i.fees }}</h1>
+            <a href="{% url 'booking' i.id %}">
+                <button class="book-button">BOOK NOW</button>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>
+

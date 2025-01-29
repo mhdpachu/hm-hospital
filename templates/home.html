@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+    <style>
+      .logo img {
+    border-radius: 50%;
+    width: 350px;
+    position: relative;
+    left: 840px;
+    top: 20px;
+    border: solid rgb(29, 51, 250);
+}
+
+.t {
+    color: red;
+    padding-left: 800px;
+}
+
+.arrow-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.arrow-button:hover {
+    background-color: #ff0404;
+}
+
+.arrow-button span {
+    margin-left: 8px; /* Adds spacing before the arrow */
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .logo img {
+        width: 300px;
+        left: 700px;
+        top: 15px;
+    }
+    .t {
+        padding-left: 600px;
+    }
+}
+
+@media (max-width: 992px) {
+    .logo img {
+        width: 250px;
+        left: 500px;
+        top: 10px;
+    }
+    .t {
+        padding-left: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        width: 200px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 10px;
+    }
+    .t {
+        text-align: center;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo img {
+        width: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 10px;
+    }
+    .t {
+        text-align: center;
+        padding-left: 0;
+    }
+    .arrow-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+    </style>
+</head>
+<body style="background-image: url('static/images/home.jpg');background-size:cover ;background-position: center;background-repeat: no-repeat;">
+    <div class="logo"><img src="static/images/logo.png"></div>
+
+    <h2 style="color: rgb(3, 207, 243); text-align: center;padding-top: 20px;">  HM Hospital </h2><br>
+    <h3 style="text-align: center;font-size:x-large;">
+        About: HM Hospital !<br> we are dedicated to providing exceptional healthcare services with compassion, innovation, and excellence. <br>Our team of highly skilled medical professionals and staff work tirelessly to ensure comprehensive and personalized care for every patient. <br>Equipped with state-of-the-art technology and modern facilities, we strive to deliver world-class treatments across multiple specialties, including cardiology, <br>orthopedics, neurology, pediatrics, and oncology. Our mission is to heal, nurture, and empower individuals while promoting health and wellness within the community. <br>At HM Hospital, your health and well-being are our top priorities, as we aim to set new standards in trusted and compassionate healthcare. 
+    </h3>
+
+    <h2 class="t">Place : Kannur near bus stand</h2>
+    <h2 class="t">Email : Hm@gamil.com</h2>
+      <h2 class="t">Ph : 9074643904</h2>
+
+
+      <h2 style="position: relative;left: 800px;">More info <a href="{% url 'treatment' %}"><button class="arrow-button">
+        NEXT<span>&#8594;</span></button></a>
+      </h2>
+
+
+
+</body>
+</html>

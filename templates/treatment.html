@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HM Hospital</title>
+    <link rel="stylesheet" href="treatment.css">
+    <style>
+        body {
+    background-image: url('../images/treat.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222;
+}
+
+.header {
+    background-color: rgb(46, 46, 248);
+    height: 120px;
+    border-radius: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.head {
+    color: aliceblue;
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.no {
+    color: aliceblue;
+    font-size: 1rem;
+}
+
+.place {
+    color: rgb(22, 14, 14);
+    font-style: italic;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.text {
+    text-align: center;
+    margin: 40px auto;
+    font-size: 1.5rem;
+}
+
+.t {
+    background-color: rgb(46, 46, 248);
+    color: aliceblue;
+    text-align: center;
+    height: 100px;
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 70px;
+    box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.t:hover {
+    background-color: #f50707;
+    transform: translateY(-5px);
+}
+
+.tname {
+    margin-top: 28px;
+    font-size: 1.2rem;
+}
+
+.desc {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #3a1c1c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .logo img {
+        margin: 0 auto;
+    }
+
+    .head {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    .no {
+        font-size: 0.9rem;
+    }
+
+    .t {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .text {
+        font-size: 1.2rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{% url 'home' %}">
+            <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Hospital Logo"></div>
+        </a>
+        <h1 class="head">HM HOSPITAL</h1>
+        <h4 class="no">Ph: 9075643904</h4>
+        <h3 class="place">Location: Kannur bus stand</h3>
+    </div>
+     
+    <h2 class="text">Please select below<br>what type of treatment you require</h2>
+ 
+    {% for i in treatment %}
+        <a href="{% url 'doctor' i.id %}">
+            <div class="t">
+                <h1 class="tname">{{ i.name }}</h1>
+                <h3 class="desc">{{ i.desc }}</h3>
+            </div>
+        </a>
+    {% endfor %}
+</body>
+</html>
